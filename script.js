@@ -38,16 +38,21 @@ window.addEventListener("mousemove", (e) => {
   points.push({ x: mouse.x, y: mouse.y });
 });
 
+let trailTick = 0; // Add this variable at the top of your script
+
 function drawTrail() {
   tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+
   if (points.length > 1) {
     tCtx.beginPath();
     tCtx.moveTo(points[0].x, points[0].y);
+
     for (let i = 1; i < points.length; i++) {
       const xc = (points[i].x + points[i - 1].x) / 2;
       const yc = (points[i].y + points[i - 1].y) / 2;
       tCtx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, xc, yc);
     }
+
     tCtx.strokeStyle = "#00ffe7";
     tCtx.lineWidth = 3;
     tCtx.lineCap = "round";
@@ -56,7 +61,21 @@ function drawTrail() {
     tCtx.shadowColor = "#00ffe7";
     tCtx.stroke();
   }
-  while (points.length > maxPoints) points.shift();
+
+  // THE FIX: Only remove points every 2nd frame to allow the trail to grow
+  // This makes the trail look like a long ribbon that follows you
+  trailTick++;
+  if (trailTick % 2 === 0) {
+    if (points.length > 0) {
+      points.shift();
+    }
+  }
+
+  // Keep the trail from getting infinitely long if you move constantly
+  if (points.length > maxPoints) {
+    points.shift();
+  }
+
   requestAnimationFrame(drawTrail);
 }
 drawTrail();
