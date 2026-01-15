@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>About | Black Mbiro</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0b0b'/><text y='75' x='15' font-family='Orbitron, sans-serif' font-weight='bold' font-size='80' fill='%2300ffe7'>B</text><path d='M10 20 L90 20' stroke='%2300ffe7' stroke-width='5' stroke-dasharray='10 5'/></svg>"
+    />
+  </head>
+  <body class="blur-bg">
+    <div class="bg-full"></div>
+    <video autoplay muted loop class="bg-video">
+      <source src="assets/videos/12716-241674181.mp4" type="video/mp4" />
+    </video>
+    <div id="particles-js"></div>
+    <div class="bg-color-overlay"></div>
+
+    <nav class="navbar">
+      <div class="logo">BLACK MBIRO</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hud-corner top-right">
+      <span>SYSTEM: ONLINE</span>
+      <div class="pulse-bar"></div>
+    </div>
+
+    <div id="page-transition" class="page-transition">
+      <section class="page hero cursor-segment">
+        <h1>About Black Mbiro</h1>
+        <p class="subtext">
+          A futuristic anime-tech brand shaping digital experiences.
+        </p>
+      </section>
+      <!-- WHAT WE DO -->
+      <section class="section">
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-subtext">
+          Black Mbiro is a creative tech studio focused on futuristic web
+          systems, anime-inspired interfaces, AI interactions, and immersive
+          digital experiences.
+        </p>
+      </section>
+      <!-- SERVICES -->
+      <section class="section">
+        <h2 class="section-title animate-on-scroll">Our Services</h2>
+
+        <div class="grid">
+          <div class="card animate-on-scroll delay-1">
+            <h3>Website Development</h3>
+            <p>
+              Custom-built, responsive websites using modern web technologies.
+            </p>
+          </div>
+
+          <div class="card animate-on-scroll delay-2">
+            <h3>Interactive UI & Animation</h3>
+            <p>
+              Anime-inspired visuals, motion effects, and immersive UI design.
+            </p>
+          </div>
+
+          <div class="card animate-on-scroll delay-3">
+            <h3>Canvas & Creative Coding</h3>
+            <p>
+              Real-time visuals, particle systems, and interactive experiences.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- CANVAS DEMO -->
+      <section class="section cursor-segment">
+        <h2 class="section-title animate-on-scroll">Interactive Canvas Lab</h2>
+
+        <div class="canvas-wrapper">
+          <!-- Background Video -->
+          <video autoplay muted loop playsinline class="canvas-video">
+            <source
+              src="assets/videos/Educational Website on Space Pollution by Zajno on Dribbble.mp4"
+              type="video/mp4"
+            />
+          </video>
+
+          <!-- Canvas Overlay -->
+          <canvas id="canvasDemo"></canvas>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <div class="card animate-on-scroll">
+          <h3>Who We Are</h3>
+          <p>
+            Black Mbiro is a cyber-inspired platform focused on futuristic web
+            design, anime aesthetics, and interactive technology.
+          </p>
+        </div>
+        <div class="card animate-on-scroll">
+          <h3>Mission</h3>
+          <p>
+            Blend creativity, anime culture, and technology into immersive
+            digital environments.
+          </p>
+        </div>
+        <div class="card animate-on-scroll">
+          <h3>Vision</h3>
+          <p>
+            Become a leading cyber-tech brand delivering next-generation digital
+            experiences.
+          </p>
+        </div>
+        <div class="card animate-on-scroll">
+          <h3>Core Values</h3>
+          <ul>
+            <li>⚡ Innovation</li>
+            <li>🎨 Creativity</li>
+            <li>🤖 Technology</li>
+            <li>🌌 Futurism</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Custom Reptile Cursor -->
+    <div class="reptile-cursor"></div>
+    <!-- UI Sound System -->
+    <audio id="ui-click" src="assets/sounds/click.mp3" preload="auto"></audio>
+    <audio id="ui-hover" src="assets/sounds/hover.mp3" preload="auto"></audio>
+    <audio id="ui-open" src="assets/sounds/open.mp3" preload="auto"></audio>
+    <audio id="ui-close" src="assets/sounds/close.mp3" preload="auto"></audio>
+  </body>
+</html>

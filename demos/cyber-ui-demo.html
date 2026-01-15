@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cyber UI Demo</title>
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at top, #001a1a, #000);
+        color: #00ffe7;
+        font-family: monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hud {
+        border: 2px solid #00ffe7;
+        padding: 40px 60px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 0 40px #00ffe7;
+        animation: pulse 2s infinite alternate;
+      }
+
+      .hud h1 {
+        margin-bottom: 10px;
+        letter-spacing: 3px;
+      }
+
+      @keyframes pulse {
+        from {
+          box-shadow: 0 0 20px #00ffe7;
+        }
+        to {
+          box-shadow: 0 0 60px #22d3ee;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="hud">
+      <h1>CYBER UI SYSTEM</h1>
+      <p>Status: ONLINE</p>
+      <p>Demo interface initialized</p>
+    </div>
+  </body>
+</html>

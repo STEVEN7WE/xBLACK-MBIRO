@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Projects | Black Mbiro</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0b0b'/><text y='75' x='15' font-family='Orbitron, sans-serif' font-weight='bold' font-size='80' fill='%2300ffe7'>B</text><path d='M10 20 L90 20' stroke='%2300ffe7' stroke-width='5' stroke-dasharray='10 5'/></svg>"
+    />
+  </head>
+  <body class="blur-bg">
+    <div class="bg-full"></div>
+    <video autoplay muted loop class="bg-video">
+      <source src="assets/videos/12716-241674181.mp4" type="video/mp4" />
+    </video>
+    <div id="particles-js"></div>
+    <div class="bg-color-overlay"></div>
+
+    <nav class="navbar">
+      <div class="logo">BLACK MBIRO</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hud-corner top-right">
+      <span>SYSTEM: ONLINE</span>
+      <div class="pulse-bar"></div>
+    </div>
+
+    <div id="page-transition" class="page-transition">
+      <section class="page hero">
+        <h1>Our Projects</h1>
+        <p class="subtext">Explore our futuristic digital creations.</p>
+      </section>
+
+      <section class="section grid cursor-segment">
+        <div class="project-card animate-on-scroll">
+          <h3>Cyber UI System</h3>
+          <p class="project-desc">
+            A futuristic anime-inspired UI system built for modern web apps.
+          </p>
+
+          <ul class="tech-stack">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>UI/UX</li>
+          </ul>
+
+          <div class="project-actions">
+            <a
+              href="#"
+              class="btn small live-demo-btn"
+              data-demo="demos/cyber-ui-demo.html"
+            >
+              Live Demo
+            </a>
+
+            <a
+              href="https://github.com/yourusername/cyber-ui-system"
+              target="_blank"
+              class="btn small outline"
+            >
+              Source Code
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="project-card"
+          data-title="NEON SYNC"
+          data-desc="High-speed synchronization protocol for cybernetic networks."
+          data-stack="React, Three.js, Node.js"
+          data-img="assets/images/project1.jpg"
+        >
+          <h3>NEON SYNC</h3>
+          <button class="btn view-project">ACCESS FILE</button>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Custom Reptile Cursor -->
+    <div class="reptile-cursor"></div>
+
+    <div id="projectModal" class="project-modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <span class="status-indicator">SECURE_FILE_ACCESS</span>
+          <button class="close-modal" id="closeProject">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-image-wrapper">
+            <img id="modalImg" src="" alt="Project Preview" />
+            <div class="image-scanner"></div>
+          </div>
+          <div class="modal-info">
+            <h2 id="modalTitle">PROJECT_NAME</h2>
+            <p id="modalDesc">Detailed data readout goes here...</p>
+            <div class="modal-tech">
+              <h3>TECH_STACK:</h3>
+              <ul id="modalStack"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <h2>ACCESS DENIED</h2>
+        <p>Demo / Source code will be released soon.</p>
+        <button id="closeInfo">CLOSE</button>
+      </div>
+    </div>
+    <div id="demoModal" class="project-modal">
+      <div class="modal-overlay"></div>
+
+      <div class="modal-container">
+        <div class="modal-header">
+          <span class="status-indicator">LIVE_DEMO_STREAM</span>
+          <button class="close-modal" id="closeDemo">&times;</button>
+        </div>
+
+        <iframe
+          id="demoFrame"
+          style="width: 100%; height: 450px; border: none"
+        ></iframe>
+      </div>
+    </div>
+    <!-- LIVE DEMO MODAL -->
+    <div id="demoModal" class="project-modal">
+      <div class="modal-overlay"></div>
+
+      <div class="modal-container">
+        <div class="modal-header">
+          <span class="status-indicator">LIVE_DEMO_STREAM</span>
+          <button class="close-modal" id="closeDemo">&times;</button>
+        </div>
+
+        <iframe
+          id="demoFrame"
+          style="width: 100%; height: 450px; border: none"
+        ></iframe>
+      </div>
+    </div>
+    <!-- UI Sound System -->
+    <audio id="ui-click" src="assets/sounds/click.mp3" preload="auto"></audio>
+    <audio id="ui-hover" src="assets/sounds/hover.mp3" preload="auto"></audio>
+    <audio id="ui-open" src="assets/sounds/open.mp3" preload="auto"></audio>
+    <audio id="ui-close" src="assets/sounds/close.mp3" preload="auto"></audio>
+  </body>
+</html>
