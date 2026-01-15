@@ -1,196 +1,74 @@
-// =======================
-// SMOOTH TRACKING REPTILE CURSOR (DESIGNATED SEGMENTS)
-// =======================
+const mobileMenu = document.getElementById("mobile-menu");
+const navLinks = document.querySelector(".nav-links");
 
-const cursor = document.querySelector(".reptile-cursor");
-
-// Mouse coordinates
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-
-// Cursor position (for smooth lag)
-let cursorX = mouseX;
-let cursorY = mouseY;
-
-// Track whether we are inside a "cursor segment"
-let activeSegment = false;
-
-// Detect segments
-document.querySelectorAll(".cursor-segment").forEach((segment) => {
-  segment.addEventListener("mouseenter", () => {
-    cursor.style.display = "block";
-    activeSegment = true;
-  });
-  segment.addEventListener("mouseleave", () => {
-    cursor.style.display = "none";
-    activeSegment = false;
-  });
-});
-
-// Update mouse position
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-// Animate cursor
-function animateCursor() {
-  if (activeSegment) {
-    // Smooth follow using lerp
-    cursorX += (mouseX - cursorX) * 0.15;
-    cursorY += (mouseY - cursorY) * 0.15;
-
-    // Calculate rotation angle
-    let angle =
-      Math.atan2(mouseY - cursorY, mouseX - cursorX) * (180 / Math.PI);
-
-    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) rotate(${angle}deg)`;
-  }
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-// Hover effect on buttons
-const buttons = document.querySelectorAll(".btn");
-buttons.forEach((btn) => {
-  btn.addEventListener("mouseenter", () => {
-    cursor.style.transform += " scale(1.5)";
-  });
-  btn.addEventListener("mouseleave", () => {
-    cursor.style.transform = cursor.style.transform.replace(" scale(1.5)", "");
-  });
-});
-
-// CONTACT FORM FUNCTIONALITY
-const form = document.getElementById("contactForm");
-const status = document.getElementById("formStatus");
-const modal = document.getElementById("successModal");
-const closeModal = document.getElementById("closeModal");
-
-// Check if form exists before adding listeners
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    status.innerHTML = "Sending message... <span class='loader'></span>";
-    status.style.color = "#00ffe7";
-
-    emailjs
-      .sendForm("service_8fyjm9m", "template_t53xt59", form)
-      .then(() => {
-        if (modal) modal.style.display = "flex";
-        form.reset();
-        status.textContent = "";
-      })
-      .catch((error) => {
-        status.textContent = "Failed to send message. Try again.";
-        status.style.color = "#ff4d4d";
-        console.error(error);
-      });
+if (mobileMenu && navLinks) {
+  mobileMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    playSound("open");
   });
 }
 
-// Check if modal and close button exist
-if (closeModal && modal) {
-  closeModal.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+/**
+ * BLACK MBIRO - UNIFIED SYSTEM SCRIPT
+ * Consolidated Version
+ */
+
+/* ==========================================
+   1. NEON TRAIL CURSOR SYSTEM
+   ========================================== */
+const trailCanvas = document.createElement("canvas");
+trailCanvas.id = "neon-cursor-canvas";
+document.body.appendChild(trailCanvas);
+const tCtx = trailCanvas.getContext("2d");
+
+let points = [];
+const maxPoints = 20;
+let mouse = { x: 0, y: 0 };
+
+function resizeTrail() {
+  trailCanvas.width = window.innerWidth;
+  trailCanvas.height = window.innerHeight;
 }
+window.addEventListener("resize", resizeTrail);
+resizeTrail();
 
-// SCROLL ANIMATION
-const animatedElements = document.querySelectorAll(".animate-on-scroll");
+window.addEventListener("mousemove", (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+  points.push({ x: mouse.x, y: mouse.y });
+});
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  },
-  {
-    threshold: 0.2,
-  }
-);
-
-animatedElements.forEach((el) => observer.observe(el));
-// CANVAS INTERACTIVE DEMO
-try {
-  const canvas = document.getElementById("canvasDemo");
-  if (canvas) {
-    const ctx = canvas.getContext("2d");
-    canvas.width = canvas.offsetWidth || 800; // fallback width
-    canvas.height = 400;
-    // Use clientWidth
-    canvas.height = 400; // Fixed height
-
-    let particles = [];
-    for (let i = 0; i < 60; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        dx: (Math.random() - 0.5) * 1.5,
-        dy: (Math.random() - 0.5) * 1.5,
-      });
+function drawTrail() {
+  tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+  if (points.length > 1) {
+    tCtx.beginPath();
+    tCtx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) {
+      const xc = (points[i].x + points[i - 1].x) / 2;
+      const yc = (points[i].y + points[i - 1].y) / 2;
+      tCtx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, xc, yc);
     }
-
-    function animateCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Replace the particle movement logic inside animateCanvas()
-      particles.forEach((p) => {
-        // Force movement in straight lines (Grid-based)
-        if (Math.random() < 0.02) {
-          // 2% chance to change direction
-          const directions = [
-            { dx: 1.5, dy: 0 },
-            { dx: -1.5, dy: 0 },
-            { dx: 0, dy: 1.5 },
-            { dx: 0, dy: -1.5 },
-          ];
-          const newDir =
-            directions[Math.floor(Math.random() * directions.length)];
-          p.dx = newDir.dx;
-          p.dy = newDir.dy;
-        }
-
-        p.x += p.dx;
-        p.y += p.dy;
-
-        // Boundary bounce
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-
-        // Draw square particles instead of circles for "tech" feel
-        ctx.fillStyle = "rgba(0, 255, 231, 0.8)";
-        ctx.fillRect(p.x, p.y, 3, 3);
-      });
-
-      requestAnimationFrame(animateCanvas);
-    }
-
-    animateCanvas();
-
-    canvas.addEventListener("mousemove", (e) => {
-      particles.forEach((p) => {
-        const dx = p.x - e.clientX;
-        const dy = p.y - e.clientY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          p.dx += dx / 200;
-          p.dy += dy / 200;
-        }
-      });
-    });
+    tCtx.strokeStyle = "#00ffe7";
+    tCtx.lineWidth = 3;
+    tCtx.lineCap = "round";
+    tCtx.lineJoin = "round";
+    tCtx.shadowBlur = 15;
+    tCtx.shadowColor = "#00ffe7";
+    tCtx.stroke();
   }
-} catch (error) {
-  console.error("Canvas init error:", error);
+  while (points.length > maxPoints) points.shift();
+  requestAnimationFrame(drawTrail);
 }
+drawTrail();
 
+/* ==========================================
+   2. UI UTILITIES (Text Effects & Sounds)
+   ========================================== */
 function decodeText(element) {
+  if (!element) return;
   const originalText = element.innerText;
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()";
   let iterations = 0;
-
   const interval = setInterval(() => {
     element.innerText = originalText
       .split("")
@@ -199,161 +77,166 @@ function decodeText(element) {
         return characters[Math.floor(Math.random() * characters.length)];
       })
       .join("");
-
     if (iterations >= originalText.length) clearInterval(interval);
     iterations += 1 / 3;
   }, 30);
 }
 
-// Trigger it for your Hero Title
-window.onload = () => {
+function playSound(type) {
+  const sound = document.getElementById(`ui-${type}`);
+  if (sound) {
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+  }
+}
+
+/* ==========================================
+   3. DOM CONTENT LOADED (Main Logic)
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  // A. Reveal Animations (Intersection Observer)
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document
+    .querySelectorAll(".animate-on-scroll")
+    .forEach((el) => observer.observe(el));
+
+  if (window.particlesJS) {
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 50 },
+        color: { value: "#00ffe7" },
+        size: { value: 2 },
+        move: { speed: 1 },
+        line_linked: { enable: false },
+      },
+    });
+  }
+
+  // B. Hero Text Decode
   const title = document.querySelector(".typing-text");
   if (title) decodeText(title);
-};
 
-const projectModal = document.getElementById("projectModal");
-const closeProject = document.getElementById("closeProject");
-
-document.querySelectorAll(".view-project").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const card = e.target.closest(".project-card");
-
-    // Fill Modal Data
-    document.getElementById("modalTitle").innerText = card.dataset.title;
-    document.getElementById("modalDesc").innerText = card.dataset.desc;
-    document.getElementById("modalImg").src = card.dataset.img;
-
-    const stackList = document.getElementById("modalStack");
-    stackList.innerHTML = card.dataset.stack
-      .split(",")
-      .map((item) => `<li>${item.trim()}</li>`)
-      .join("");
-
-    // Show Modal
-    projectModal.style.display = "flex";
+  // C. Global Hover/Click Sounds
+  document.querySelectorAll(".btn, a, .card, .project-card").forEach((item) => {
+    item.addEventListener("mouseenter", () => playSound("hover"));
+    item.addEventListener("click", () => playSound("click"));
   });
-});
 
-closeProject.addEventListener("click", () => {
-  projectModal.style.display = "none";
-});
+  // D. Interactive Particle Lab (CanvasDemo)
+  const labCanvas = document.getElementById("canvasDemo");
+  if (labCanvas) {
+    const lCtx = labCanvas.getContext("2d");
+    const particles = [];
 
-// Close on background click
-window.addEventListener("click", (e) => {
-  if (e.target === document.querySelector(".modal-overlay")) {
-    projectModal.style.display = "none";
+    const resizeLab = () => {
+      labCanvas.width = labCanvas.offsetWidth;
+      labCanvas.height = 400;
+    };
+    resizeLab();
+
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * labCanvas.width,
+        y: Math.random() * labCanvas.height,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2,
+        size: Math.random() * 2 + 1,
+      });
+    }
+
+    function animateLab() {
+      lCtx.clearRect(0, 0, labCanvas.width, labCanvas.height);
+      particles.forEach((p) => {
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > labCanvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > labCanvas.height) p.dy *= -1;
+        lCtx.fillStyle = "rgba(0, 255, 231, 0.7)";
+        lCtx.fillRect(p.x, p.y, p.size, p.size);
+      });
+      requestAnimationFrame(animateLab);
+    }
+    animateLab();
   }
-});
-// ===== INTERACTIVE CANVAS LAB =====
-const canvas = document.getElementById("canvasDemo");
 
-if (canvas) {
-  const ctx = canvas.getContext("2d");
+  // E. Project Modal Logic
+  const projectModal = document.getElementById("projectModal");
+  if (projectModal && document.getElementById("modalTitle")) {
+    document.querySelectorAll(".view-project").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const card = e.target.closest(".project-card");
+        document.getElementById("modalTitle").innerText = card.dataset.title;
+        document.getElementById("modalDesc").innerText = card.dataset.desc;
+        document.getElementById("modalImg").src = card.dataset.img;
+        const stackList = document.getElementById("modalStack");
+        stackList.innerHTML = card.dataset.stack
+          .split(",")
+          .map((i) => `<li>${i.trim()}</li>`)
+          .join("");
+        projectModal.style.display = "flex";
+        playSound("open");
+      });
+    });
 
-  function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  let particles = [];
-
-  for (let i = 0; i < 60; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 2 + 1,
-      dx: (Math.random() - 0.5) * 0.6,
-      dy: (Math.random() - 0.5) * 0.6,
+    document.getElementById("closeProject")?.addEventListener("click", () => {
+      projectModal.style.display = "none";
+      playSound("close");
     });
   }
 
-  function animateCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach((p) => {
-      p.x += p.dx;
-      p.y += p.dy;
-
-      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(0,255,255,0.6)";
-      ctx.fill();
-    });
-
-    requestAnimationFrame(animateCanvas);
-  }
-
-  animateCanvas();
-}
-const demoModal = document.getElementById("demoModal");
-const demoFrame = document.getElementById("demoFrame");
-const closeDemo = document.getElementById("closeDemo");
-
-document.querySelectorAll(".live-demo-btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const demoSrc = btn.getAttribute("data-demo");
-    demoFrame.src = demoSrc;
-
-    demoModal.style.display = "flex";
-  });
-});
-
-closeDemo.addEventListener("click", () => {
-  demoModal.style.display = "none";
-  demoFrame.src = "";
-});
-document.addEventListener("DOMContentLoaded", () => {
+  // F. Live Demo Modal Logic
   const demoModal = document.getElementById("demoModal");
   const demoFrame = document.getElementById("demoFrame");
-  const closeDemo = document.getElementById("closeDemo");
+  if (demoModal) {
+    document.querySelectorAll(".live-demo-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        demoFrame.src = btn.dataset.demo;
+        demoModal.style.display = "flex";
+        playSound("open");
+      });
+    });
 
-  if (!demoModal) {
-    console.error("❌ demoModal not found");
-    return;
+    document.getElementById("closeDemo")?.addEventListener("click", () => {
+      demoModal.style.display = "none";
+      demoFrame.src = "";
+      playSound("close");
+    });
   }
 
-  document.querySelectorAll(".live-demo-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  // G. Contact Form Logic
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
+      const status = document.getElementById("formStatus");
+      status.innerHTML = "SENDING... <span class='loader'></span>";
 
-      const demoSrc = btn.dataset.demo;
-      console.log("▶ Loading demo:", demoSrc);
-
-      demoFrame.src = demoSrc;
-      demoModal.style.display = "flex";
+      emailjs
+        .sendForm("service_8fyjm9m", "template_t53xt59", contactForm)
+        .then(() => {
+          document.getElementById("successModal").style.display = "flex";
+          contactForm.reset();
+          status.textContent = "";
+        })
+        .catch((err) => {
+          status.textContent = "TRANSMISSION FAILED.";
+          status.style.color = "#ff4d4d";
+        });
     });
-  });
-
-  closeDemo.addEventListener("click", () => {
-    demoModal.style.display = "none";
-    demoFrame.src = "";
-  });
+  }
 });
-demoModal.classList.add("active");
-/* ==========================
-   UI SOUND CONTROLLER
-========================== */
 
-const sounds = {
-  click: document.getElementById("ui-click"),
-  hover: document.getElementById("ui-hover"),
-  open: document.getElementById("ui-open"),
-  close: document.getElementById("ui-close"),
-};
-
-function playSound(type) {
-  if (!sounds[type]) return;
-  sounds[type].currentTime = 0;
-  sounds[type].play().catch(() => {});
-}
-
+/* ==========================================
+   4. SYSTEM STATE (Tab Titles)
+   ========================================== */
 window.addEventListener("blur", () => {
   document.title = "SYSTEM PAUSED | Black Mbiro";
 });

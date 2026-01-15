@@ -2,32 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Black Mbiro - Creative tech studio for futuristic web systems and anime-inspired interfaces."
+    />
     <title>Black Mbiro</title>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="style.css" />
+
     <link
       rel="icon"
       type="image/svg+xml"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0b0b'/><text y='75' x='15' font-family='Orbitron, sans-serif' font-weight='bold' font-size='80' fill='%2300ffe7'>B</text><path d='M10 20 L90 20' stroke='%2300ffe7' stroke-width='5' stroke-dasharray='10 5'/></svg>"
     />
-
-    <div id="app">
-      <div id="hero">
-        <h1>NEON<br />CURSOR</h1>
-        <a
-          target="_blank"
-          href="https://www.framer.com/marketplace/components/neon-cursor/"
-          >Framer Component</a
-        >
-      </div>
-    </div>
   </head>
+
   <body class="blur-bg">
+    <div class="scanlines"></div>
     <div class="bg-full"></div>
-    <video autoplay muted loop class="bg-video">
+    <video autoplay muted loop playsinline class="bg-video">
       <source src="assets/videos/12716-241674181.mp4" type="video/mp4" />
     </video>
     <div id="particles-js"></div>
@@ -38,15 +37,14 @@
       <div class="pulse-bar"></div>
     </div>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
       <div class="logo">BLACK MBIRO</div>
 
-      <div class="menu-toggle" id="mobile-menu">
+      <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
-      </div>
+      </button>
 
       <ul class="nav-links">
         <li><a href="about.html">About</a></li>
@@ -55,106 +53,108 @@
       </ul>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="page hero cursor-segment">
-      <h1 class="typing-text">BLACK MBIRO</h1>
-      <p class="subtext">Anime • Technology • Futuristic Experiences</p>
-      <div class="buttons">
-        <a href="projects.html" class="btn">Explore Projects</a>
-        <a href="contact.html" class="btn">Collaborate</a>
-      </div>
-    </section>
-    <!-- WHAT WE DO -->
-    <section class="section">
-      <h2 class="section-title animate-on-scroll">What We Do</h2>
-
-      <p class="section-subtext animate-on-scroll delay-1">
-        Black Mbiro is a creative tech studio focused on futuristic web systems,
-        anime-inspired interfaces, AI interactions, and immersive digital
-        experiences.
-      </p>
-
-      <p class="section-subtext animate-on-scroll delay-2">
-        We design, build, and customize modern websites from scratch, creating
-        interactive experiences using advanced CSS, JavaScript, and HTML Canvas
-        to bring ideas to life.
-      </p>
-    </section>
-
-    <!-- ABOUT / FEATURES -->
-    <section class="section">
-      <h2 class="section-title">Our Features</h2>
-      <p class="section-subtext">
-        We combine creativity, AI, and futuristic UI/UX to deliver interactive
-        digital experiences.
-      </p>
-      <div class="grid">
-        <div class="card animate-on-scroll">
-          <h3>Futuristic UI</h3>
-          <p>
-            Neon cyber-inspired interfaces with interactive animations and
-            immersive microinteractions.
-          </p>
+    <main>
+      <section class="page hero cursor-segment">
+        <h1 class="typing-text">BLACK MBIRO</h1>
+        <p class="subtext">Anime • Technology • Futuristic Experiences</p>
+        <div class="buttons">
+          <a href="projects.html" class="btn">Explore Projects</a>
+          <a href="contact.html" class="btn">Collaborate</a>
         </div>
-        <div class="card animate-on-scroll">
-          <h3>AI Integration</h3>
-          <p>
-            Smart systems respond to user behavior in real-time for personalized
-            experiences.
-          </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title animate-on-scroll">What We Do</h2>
+        <p class="section-subtext animate-on-scroll delay-1">
+          Black Mbiro is a creative tech studio focused on futuristic web
+          systems, anime-inspired interfaces, AI interactions, and immersive
+          digital experiences.
+        </p>
+        <p class="section-subtext animate-on-scroll delay-2">
+          We design, build, and customize modern websites from scratch, creating
+          interactive experiences using advanced CSS, JavaScript, and HTML
+          Canvas to bring ideas to life.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Our Features</h2>
+        <p class="section-subtext">
+          We combine creativity, AI, and futuristic UI/UX to deliver interactive
+          digital experiences.
+        </p>
+        <div class="grid">
+          <div class="card animate-on-scroll">
+            <h3>Futuristic UI</h3>
+            <p>
+              Neon cyber-inspired interfaces with interactive animations and
+              immersive microinteractions.
+            </p>
+          </div>
+          <div class="card animate-on-scroll">
+            <h3>AI Integration</h3>
+            <p>
+              Smart systems respond to user behavior in real-time for
+              personalized experiences.
+            </p>
+          </div>
+          <div class="card animate-on-scroll">
+            <h3>Virtual Worlds</h3>
+            <p>
+              Immersive 3D environments for gaming, training, and storytelling.
+            </p>
+          </div>
+          <div class="card animate-on-scroll">
+            <h3>Creative Coding</h3>
+            <p>
+              Custom animations, effects, and interactive scripts to elevate
+              digital creativity.
+            </p>
+          </div>
         </div>
-        <div class="card animate-on-scroll">
+      </section>
+
+      <section class="section grid cursor-segment">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-card animate-on-scroll">
+          <h3>Cyber UI Design</h3>
+          <p>
+            Anime-inspired neon interfaces designed for futuristic platforms.
+          </p>
+          <a href="projects.html" class="btn">View Project</a>
+        </div>
+        <div class="project-card animate-on-scroll">
+          <h3>AI Interaction</h3>
+          <p>Interactive AI-driven web systems for digital engagement.</p>
+          <a href="projects.html" class="btn">View Project</a>
+        </div>
+        <div class="project-card animate-on-scroll">
           <h3>Virtual Worlds</h3>
-          <p>
-            Immersive 3D environments for gaming, training, and storytelling.
-          </p>
+          <p>Immersive environments for storytelling and exploration in 3D.</p>
+          <a href="projects.html" class="btn">View Project</a>
         </div>
-        <div class="card animate-on-scroll">
-          <h3>Creative Coding</h3>
-          <p>
-            Custom animations, effects, and interactive scripts to elevate
-            digital creativity.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FEATURED PROJECTS -->
-    <section class="section grid cursor-segment">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="project-card animate-on-scroll">
-        <h3>Cyber UI Design</h3>
-        <p>Anime-inspired neon interfaces designed for futuristic platforms.</p>
-        <a href="projects.html" class="btn">View Project</a>
-      </div>
-      <div class="project-card animate-on-scroll">
-        <h3>AI Interaction</h3>
-        <p>Interactive AI-driven web systems for digital engagement.</p>
-        <a href="projects.html" class="btn">View Project</a>
-      </div>
-      <div class="project-card animate-on-scroll">
-        <h3>Virtual Worlds</h3>
-        <p>Immersive environments for storytelling and exploration in 3D.</p>
-        <a href="projects.html" class="btn">View Project</a>
-      </div>
-    </section>
+      <section class="section hero">
+        <h2 class="section-title">Join the Future</h2>
+        <p>
+          Be part of Black Mbiro's journey. Let’s create cyber-tech experiences
+          together.
+        </p>
+        <a href="contact.html" class="btn">Contact Us</a>
+      </section>
+    </main>
 
-    <!-- CALL TO ACTION -->
-    <section class="section hero">
-      <h2 class="section-title">Join the Future</h2>
-      <p>
-        Be part of Black Mbiro's journey. Let’s create cyber-tech experiences
-        together.
-      </p>
-      <a href="contact.html" class="btn">Contact Us</a>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
-    <!-- UI Sound System -->
     <audio id="ui-click" src="assets/sounds/click.mp3" preload="auto"></audio>
     <audio id="ui-hover" src="assets/sounds/hover.mp3" preload="auto"></audio>
     <audio id="ui-open" src="assets/sounds/open.mp3" preload="auto"></audio>
     <audio id="ui-close" src="assets/sounds/close.mp3" preload="auto"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+      emailjs.init("ToUvRNUiZ2nf1pi-2");
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
