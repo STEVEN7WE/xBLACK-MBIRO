@@ -72,8 +72,7 @@ body {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 0.8rem;
   color: #00ffe7;
   text-shadow: 0 0 10px #00ffe7;
 }
@@ -252,8 +251,8 @@ body {
 }
 
 .contact-section .section-title {
-  font-family: "Orbitron", sans-serif;
-  font-size: 2.5rem;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.5rem;
   color: #00ffe7;
   text-align: center;
   margin-bottom: 15px;
@@ -287,7 +286,7 @@ body {
   background: rgba(0, 0, 0, 0.5);
   color: #00ffe7;
   outline: none;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "Times New Roman", sans-serif;
   transition: all 0.3s ease;
 }
 
@@ -302,7 +301,7 @@ body {
   color: #00ffe7;
   pointer-events: none;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 /* Floating label */
@@ -312,7 +311,7 @@ body {
 .input-group textarea:not(:placeholder-shown) + label {
   top: -12px;
   left: 15px;
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   color: #22d3ee;
   background: rgba(0, 0, 0, 0.7);
   padding: 0 5px;
@@ -332,7 +331,7 @@ body {
   border: 2px solid #00ffe7;
   background: transparent;
   color: #00ffe7;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   align-self: center;
   transition: all 0.3s ease;
 }
